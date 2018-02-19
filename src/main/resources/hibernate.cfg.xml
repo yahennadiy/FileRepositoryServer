@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+        <property name="hibernate.connection.driver_class">
+            com.mysql.jdbc.Driver
+        </property>
+        <property name="hibernate.connection.url">
+            jdbc:mysql://localhost:3306/repository
+        </property>
+        <property name="hibernate.connection.username">
+            root
+        </property>
+        <property name="hibernate.connection.password">
+            ******** your password ********
+        </property>
+        <property name="hibernate.c3p0.max_statements">
+            90
+        </property>
+        <property name="hibernate.c3p0.min_size">
+            3
+        </property>
+        <property name="hibernate.c3p0.max_size">
+            15
+        </property>
+        <property name="hibernate.c3p0.acquire_increment">
+            3
+        </property>
+        <property name="hibernate.c3p0.timeout">
+            60
+        </property>
+        <mapping resource="repository.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
