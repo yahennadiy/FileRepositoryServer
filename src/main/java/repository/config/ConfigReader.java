@@ -20,6 +20,14 @@ public class ConfigReader {
         return configParameters.port;
     }
 
+    public static int getExpiresIn() {
+        return configParameters.expiresIn;
+    }
+
+    public static int getResponseDelay() {
+        return configParameters.responseDelay;
+    }
+
     public static String getNumberOfRowsToSelect() {
         return configParameters.numberOfRowsToSelect;
     }
@@ -64,24 +72,40 @@ public class ConfigReader {
         return configParameters.editProfileQuery;
     }
 
+    public static String getChangePasswordQuery() {
+        return configParameters.changePasswordQuery;
+    }
+
     public static String getDeleteAccountQuery() {
         return configParameters.deleteAccountQuery;
     }
 
-    public static String getUserExist() {
-        return configParameters.userExist;
+    public static String getTokenIsValid() {
+        return configParameters.tokenIsValid;
     }
 
-    public static String getUserNotExist() {
-        return configParameters.userNotExist;
+    public static String getTokenIsInvalid() {
+        return configParameters.tokenIsInvalid;
     }
 
-    public static String getPasswordNotCorrect() {
-        return configParameters.passwordNotCorrect;
+    public static String getUserOK() {
+        return configParameters.userOK;
+    }
+
+    public static String getUserAlreadyExist() {
+        return configParameters.userAlreadyExist;
+    }
+
+    public static String getUserNameOrPasswordIsIncorrect() {
+        return configParameters.userNameOrPasswordIsIncorrect;
     }
 
     public static String getProfileStored() {
         return configParameters.profileStored;
+    }
+
+    public static String getPasswordChanged() {
+        return configParameters.passwordChanged;
     }
 
     public static String getAccountDeleted() {

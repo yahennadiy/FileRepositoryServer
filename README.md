@@ -1,7 +1,8 @@
-  This is a Server`s part of client-server application using Netty, Hibernate, MySQL, c3p0 Connection Pool.
+  This is a Server`s part of client-server application using Netty, Hibernate, MySQL, C3P0 Connection Pool,
+      JSON Web Token, hashing and salting password.
 
   The application has a file repository. Users can receive a list of files, their description and
-download the selected file.
+      download the selected file.
   The test files are located in the /FileRepositoryServer/files directory.
   Downloaded files will be placed to the /FileTarget directory from the root of client`s computer.
 

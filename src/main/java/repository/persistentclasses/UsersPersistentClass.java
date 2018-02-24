@@ -7,12 +7,14 @@ import javax.persistence.Id;
 @Entity
 public class UsersPersistentClass {
     @Id
-    @Column(name = "ID")
-    private int id;
+    @Column(name = "USER_ID")
+    private int userId;
     @Column(name = "USER_NAME")
     private String userName;
     @Column(name = "PASSWORD")
-    private String password;
+    private String hashPassword;
+    @Column(name = "ACCESS")
+    private String access;
     @Column(name = "FIRST_NAME")
     private String firstName;
     @Column(name = "LAST_NAME")
@@ -22,20 +24,22 @@ public class UsersPersistentClass {
         //Must be
     }
 
-    public UsersPersistentClass(int id, String userName, String password, String firstName, String lastName) {
-        this.id = id;
+    public UsersPersistentClass(int userId, String userName, String hashPassword, String access,
+                                String firstName, String lastName) {
+        this.userId = userId;
         this.userName = userName;
-        this.password = password;
+        this.hashPassword = hashPassword;
+        this.access = access;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int id) {
+        this.userId = id;
     }
 
     public String getUserName() {
@@ -46,12 +50,20 @@ public class UsersPersistentClass {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getHashPassword() {
+        return hashPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setHashPassword(String password) {
+        this.hashPassword = password;
+    }
+
+    public String getAccess() {
+        return access;
+    }
+
+    public void setAccess(String access) {
+        this.access = access;
     }
 
     public String getFirstName() {

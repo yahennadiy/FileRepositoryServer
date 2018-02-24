@@ -3,7 +3,7 @@ package repository.passwordhashing;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 
-public class PasswordImplementor {
+public class HashPasswordImplementor {
     private static Argon2 argon2 = Argon2Factory.create();
 
     public static String getNewHash(String password) {

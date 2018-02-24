@@ -1,41 +1,65 @@
 package repository.queryhandlers;
 
-import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandlerContext;
 import repository.config.ConfigReader;
 import repository.dboperations.PrevFilesHqlSelector;
+import repository.passwordhashing.TokenImplementor;
 import repository.persistentclasses.FilesPersistentClass;
 import repository.queryhandlers.pickers.FileStringPicker;
+
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class PrevFilesInfoHandler implements HandlerInterface {
-    public static void exec(Channel currentChannel, String[] clientQuery) {
-        String fromFileName = clientQuery[2];
-        int numberOfRowsInt = Integer.parseInt(clientQuery[3]);
-        String numberOfRows = Integer.toString(numberOfRowsInt + 1);
-        List fileData = PrevFilesHqlSelector.exec(currentChannel, fromFileName, numberOfRows);
+    private static final int RESPONSE_DELAY = ConfigReader.getResponseDelay();
+
+    public static void exec(ChannelHandlerContext currentCtx, String[] clientQuery) {
         StringBuilder stringBuilder = new StringBuilder();
+        String toClientResponse;
         String separator = ConfigReader.getSeparator();
-        int numberOfFilesInfo = fileData.size();
-        String moreFiles;
-        int startIndex= 0;
-        if (numberOfFilesInfo > Integer.parseInt(ConfigReader.getNumberOfRowsToSelect())) {
-            numberOfFilesInfo--;
-            moreFiles = ConfigReader.getHaveMore();
-            startIndex = 1;
+        String currentToken = clientQuery[2];
+        if (!TokenImplementor.isTokenValid(currentToken)) {
+            toClientResponse = stringBuilder.append(ConfigReader.getStartOfTransmission()).append(separator)
+                    .append(ConfigReader.getNextFilesInfoQuery()).append(separator)
+                    .append(ConfigReader.getTokenIsInvalid()).append(separator)
+                    .append(ConfigReader.getEndOfTransmission()).toString();
+            System.out.println(toClientResponse);
+            currentCtx.writeAndFlush(toClientResponse);
         } else {
-            moreFiles = ConfigReader.getHaveNotMore();
-        }
+            String fromFileName = clientQuery[3];
+            int numberOfRowsInt = Integer.parseInt(clientQuery[4]);
+            String numberOfRows = Integer.toString(numberOfRowsInt + 1);
+            List fileData = PrevFilesHqlSelector.exec(currentCtx, fromFileName, numberOfRows);
 
-        stringBuilder.append(ConfigReader.getStartOfTransmission()).append(separator)
-                .append(ConfigReader.getPrevFilesInfoQuery()).append(separator)
-                .append(Integer.toString(numberOfFilesInfo)).append(separator)
-                .append(moreFiles).append(separator);
-        for (int i = startIndex; i < fileData.size(); i++) {
-            FilesPersistentClass file = (FilesPersistentClass) fileData.get(i);
-            stringBuilder.append(FileStringPicker.get(file));
-        }
+            int numberOfFilesInfo = fileData.size();
+            String moreFiles;
+            int startFileDataIndex = 0;
+            if (numberOfFilesInfo > Integer.parseInt(ConfigReader.getNumberOfRowsToSelect())) {
+                numberOfFilesInfo--;
+                moreFiles = ConfigReader.getHaveMore();
+                startFileDataIndex = 1;
+            } else {
+                moreFiles = ConfigReader.getHaveNotMore();
+            }
 
-        String toClientResponse = stringBuilder.append(ConfigReader.getEndOfTransmission()).toString();
-        currentChannel.writeAndFlush(toClientResponse);
+            int currentFileInfoIndex = 0;
+            for (int i = startFileDataIndex; i < fileData.size(); i++, currentFileInfoIndex++) {
+                stringBuilder.setLength(0);
+                FilesPersistentClass file = (FilesPersistentClass) fileData.get(i);
+                toClientResponse = stringBuilder.append(ConfigReader.getStartOfTransmission()).append(separator)
+                        .append(ConfigReader.getPrevFilesInfoQuery()).append(separator)
+                        .append(ConfigReader.getTokenIsValid()).append(separator)
+                        .append(Integer.toString(numberOfFilesInfo)).append(separator)
+                        .append(currentFileInfoIndex).append(separator)
+                        .append(moreFiles).append(separator)
+                        .append(FileStringPicker.get(file))
+                        .append(ConfigReader.getEndOfTransmission()).toString();
+                System.out.println(toClientResponse);
+                String finalToClientResponse = toClientResponse;
+                currentCtx.executor().schedule(() ->
+                                currentCtx.writeAndFlush(finalToClientResponse),
+                        i * RESPONSE_DELAY, TimeUnit.MILLISECONDS);
+            }
+        }
     }
 }

@@ -7,10 +7,11 @@
         <meta attribute="class-description">
             This class contains users details.
         </meta>
-        <id name="id" type="int" column="ID">
+        <id name="userId" type="int" column="USER_ID">
         </id>
         <property name="userName" type="string" column="USER_NAME"/>
-        <property name="password" type="string" column="PASSWORD"/>
+        <property name="hashPassword" type="string" column="PASSWORD"/>
+        <property name="access" type="string" column="ACCESS"/>
         <property name="firstName" type="string" column="FIRST_NAME"/>
         <property name="lastName" type="string" column="LAST_NAME"/>
     </class>
@@ -18,7 +19,7 @@
         <meta attribute="class-description">
             This class contains texts details.
         </meta>
-        <id name="id" type="int" column="ID">
+        <id name="fileId" type="int" column="FILE_ID">
         </id>
         <property name="fileName" type="string" column="FILE_NAME"/>
         <property name="description" type="string" column="DESCRIPTION"/>

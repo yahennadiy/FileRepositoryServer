@@ -7,8 +7,8 @@ import javax.persistence.Id;
 @Entity
 public class FilesPersistentClass {
     @Id
-    @Column(name = "ID")
-    private int id;
+    @Column(name = "FILE_ID")
+    private int fileId;
     @Column(name = "FILE_NAME")
     private String fileName;
     @Column(name = "DESCRIPTION")
@@ -20,18 +20,19 @@ public class FilesPersistentClass {
         //Must be
     }
 
-    public FilesPersistentClass(String fileName, String description, String url) {
+    public FilesPersistentClass(int fileId, String fileName, String description, String url) {
+        this.fileId = fileId;
         this.fileName = fileName;
         this.description = description;
         this.url = url;
     }
 
-    public int getId() {
-        return id;
+    public int getFileId() {
+        return fileId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setFileId(int fileId) {
+        this.fileId = fileId;
     }
 
     public String getFileName() {

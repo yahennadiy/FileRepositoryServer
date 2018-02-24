@@ -7,7 +7,8 @@ public class FileStringPicker {
     public static String get(FilesPersistentClass file) {
         StringBuilder fileStringBuilder = new StringBuilder();
         String separator = ConfigReader.getSeparator();
-        fileStringBuilder = fileStringBuilder.append(file.getFileName()).append(separator)
+        fileStringBuilder.append(Integer.toString(file.getFileId())).append(separator)
+                .append(file.getFileName()).append(separator)
                 .append(file.getDescription()).append(separator)
                 .append(file.getUrl()).append(separator);
         return fileStringBuilder.toString();
