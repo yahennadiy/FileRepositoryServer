@@ -33,7 +33,8 @@ public class RegistrationHandler implements HandlerInterface {
             stringBuilder.append(ConfigReader.getUserAlreadyExist()).append(separator);
         }
 
-        String toClientResponse = stringBuilder.append(ConfigReader.getEndOfTransmission()).toString();
+        String toClientResponse = stringBuilder.append(ConfigReader.getEndOfText())
+                .append(ConfigReader.getEndOfTransmission()).toString();
         currentCtx.writeAndFlush(toClientResponse);
     }
 }

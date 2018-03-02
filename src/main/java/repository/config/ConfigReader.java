@@ -16,16 +16,32 @@ public class ConfigReader {
         }
     }
 
+    public static String getKeyWord() {
+        return configParameters.keyWord;
+    }
+
+    public static String getHost() {
+        return configParameters.host;
+    }
+
     public static int getPort() {
         return configParameters.port;
     }
 
-    public static int getExpiresIn() {
-        return configParameters.expiresIn;
+    public static int getFtpPort() {
+        return configParameters.ftpPort;
     }
 
-    public static int getResponseDelay() {
-        return configParameters.responseDelay;
+    public static String getHeadUrl() {
+        return configParameters.headUrl;
+    }
+
+    public static String getFileUploadDir() {
+        return configParameters.fileUploadDir;
+    }
+
+    public static int getExpiresIn() {
+        return configParameters.expiresIn;
     }
 
     public static String getNumberOfRowsToSelect() {
@@ -34,6 +50,10 @@ public class ConfigReader {
 
     public static String getStartOfTransmission() {
         return configParameters.startOfTransmission;
+    }
+
+    public static String getEndOfText() {
+        return configParameters.endOfText;
     }
 
     public static String getEndOfTransmission() {
@@ -80,6 +100,10 @@ public class ConfigReader {
         return configParameters.deleteAccountQuery;
     }
 
+    public static String getFileInfoUploadQuery() {
+        return configParameters.fileInfoUploadQuery;
+    }
+
     public static String getTokenIsValid() {
         return configParameters.tokenIsValid;
     }
@@ -110,6 +134,14 @@ public class ConfigReader {
 
     public static String getAccountDeleted() {
         return configParameters.accountDeleted;
+    }
+
+    public static String getFileInfoStored() {
+        return configParameters.fileInfoStored;
+    }
+
+    public static String getFileNameAlreadyExist() {
+        return configParameters.fileNameAlreadyExist;
     }
 
     public static String getDataBaseOperationError() {

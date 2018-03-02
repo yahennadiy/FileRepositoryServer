@@ -1,15 +1,15 @@
 package repository;
 
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 import repository.config.ConfigReader;
 import repository.queryhandlers.*;
 
-public class ServerHandler extends SimpleChannelInboundHandler {
+public class ServerHandler extends ChannelInboundHandlerAdapter {
+
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
+    public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ChannelHandlerContext currentCtx = ctx;
-//        Channel currentChannel = ctx.channel();
         System.out.println("Client send: " + msg);
         String[] clientQuery = msg.toString().split(ConfigReader.getSeparator());
         QueryHandler.exec(currentCtx, clientQuery);

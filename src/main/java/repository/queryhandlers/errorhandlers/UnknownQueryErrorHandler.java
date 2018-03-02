@@ -10,6 +10,7 @@ public class UnknownQueryErrorHandler implements HandlerInterface {
         String separator = ConfigReader.getSeparator();
         String toClientResponse = stringBuilder.append(ConfigReader.getStartOfTransmission()).append(separator)
                 .append(ConfigReader.getUnknownQueryError()).append(separator)
+                .append(ConfigReader.getEndOfText())
                 .append(ConfigReader.getEndOfTransmission()).toString();
         currentCtx.writeAndFlush(toClientResponse);
     }

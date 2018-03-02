@@ -7,11 +7,8 @@ import repository.passwordhashing.TokenImplementor;
 import repository.persistentclasses.FilesPersistentClass;
 import repository.queryhandlers.pickers.FileStringPicker;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class NextFilesInfoHandler implements HandlerInterface {
-    private static final int RESPONSE_DELAY = ConfigReader.getResponseDelay();
-
     public static void exec(ChannelHandlerContext currentCtx, String[] clientQuery) {
         StringBuilder stringBuilder = new StringBuilder();
         String toClientResponse;
@@ -21,6 +18,7 @@ public class NextFilesInfoHandler implements HandlerInterface {
             toClientResponse = stringBuilder.append(ConfigReader.getStartOfTransmission()).append(separator)
                     .append(ConfigReader.getNextFilesInfoQuery()).append(separator)
                     .append(ConfigReader.getTokenIsInvalid()).append(separator)
+                    .append(ConfigReader.getEndOfText())
                     .append(ConfigReader.getEndOfTransmission()).toString();
             System.out.println(toClientResponse);
             currentCtx.writeAndFlush(toClientResponse);
@@ -49,13 +47,11 @@ public class NextFilesInfoHandler implements HandlerInterface {
                         .append(currentFileInfoIndex).append(separator)
                         .append(moreFiles).append(separator)
                         .append(FileStringPicker.get(file))
+                        .append(ConfigReader.getEndOfText())
                         .append(ConfigReader.getEndOfTransmission()).toString();
                 System.out.println(toClientResponse);
-
                 String finalToClientResponse = toClientResponse;
-                currentCtx.executor().schedule(() ->
-                        currentCtx.writeAndFlush(finalToClientResponse),
-                        i * RESPONSE_DELAY, TimeUnit.MILLISECONDS);
+                currentCtx.writeAndFlush(finalToClientResponse);
             }
         }
     }

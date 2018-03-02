@@ -11,6 +11,8 @@ public class FilesPersistentClass {
     private int fileId;
     @Column(name = "FILE_NAME")
     private String fileName;
+    @Column(name = "OWNER")
+    private int fileOwner;
     @Column(name = "DESCRIPTION")
     private String description;
     @Column(name = "URL")
@@ -20,9 +22,10 @@ public class FilesPersistentClass {
         //Must be
     }
 
-    public FilesPersistentClass(int fileId, String fileName, String description, String url) {
+    public FilesPersistentClass(int fileId, String fileName, int fileOwner, String description, String url) {
         this.fileId = fileId;
         this.fileName = fileName;
+        this.fileOwner = fileOwner;
         this.description = description;
         this.url = url;
     }
@@ -41,6 +44,14 @@ public class FilesPersistentClass {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public int getFileOwner() {
+        return fileOwner;
+    }
+
+    public void setFileOwner(int fileOwner) {
+        this.fileOwner = fileOwner;
     }
 
     public void setDescription(String description) {

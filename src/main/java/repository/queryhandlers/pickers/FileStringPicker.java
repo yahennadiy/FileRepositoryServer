@@ -9,6 +9,7 @@ public class FileStringPicker {
         String separator = ConfigReader.getSeparator();
         fileStringBuilder.append(Integer.toString(file.getFileId())).append(separator)
                 .append(file.getFileName()).append(separator)
+                .append(file.getFileOwner()).append(separator)
                 .append(file.getDescription()).append(separator)
                 .append(file.getUrl()).append(separator);
         return fileStringBuilder.toString();

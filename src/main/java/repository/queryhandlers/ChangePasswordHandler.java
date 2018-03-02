@@ -34,7 +34,8 @@ public class ChangePasswordHandler implements HandlerInterface {
             }
         }
 
-        String toClientResponse = stringBuilder.append(ConfigReader.getEndOfTransmission()).toString();
+        String toClientResponse = stringBuilder.append(ConfigReader.getEndOfText())
+                .append(ConfigReader.getEndOfTransmission()).toString();
         currentCtx.writeAndFlush(toClientResponse);
     }
 }

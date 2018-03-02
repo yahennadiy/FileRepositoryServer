@@ -8,9 +8,10 @@ import repository.queryhandlers.errorhandlers.UnknownQueryErrorHandler;
 
 public class QueryHandler {
     private static final String START_OF_TRANSMISSION = ConfigReader.getStartOfTransmission();
-    private static final String END_OF_TRANSMISSION = ConfigReader.getEndOfTransmission();
+    private static final String END_OF_TEXT = ConfigReader.getEndOfText();
     private static final String NEXT_FILES_INFO_QUERY = ConfigReader.getNextFilesInfoQuery();
     private static final String PREV_FILES_INFO_QUERY = ConfigReader.getPrevFilesInfoQuery();
+    private static final String FILE_INFO_UPLOAD_QUERY = ConfigReader.getFileInfoUploadQuery();
     private static final String LOG_IN_QUERY = ConfigReader.getLogInQuery();
     private static final String REGISTRATION_QUERY = ConfigReader.getRegistrationQuery();
     private static final String EDIT_PROFILE_QUERY = ConfigReader.getEditProfileQuery();
@@ -28,11 +29,13 @@ public class QueryHandler {
         String queryType = clientQuery[1];
         String endOfTransmission = clientQuery[clientQuery.length - 1];
         if (startOfTransmission.equals(START_OF_TRANSMISSION)
-                && endOfTransmission.equals(END_OF_TRANSMISSION)) {
+                && endOfTransmission.equals(END_OF_TEXT)) {
             if (queryType.equals(NEXT_FILES_INFO_QUERY)) {
                 NextFilesInfoHandler.exec(currentCtx, clientQuery);
             } else if (queryType.equals(PREV_FILES_INFO_QUERY)) {
                 PrevFilesInfoHandler.exec(currentCtx, clientQuery);
+            } else if (queryType.equals(FILE_INFO_UPLOAD_QUERY)) {
+                FileInfoUploadHandler.exec(currentCtx, clientQuery);
             } else if (queryType.equals(LOG_IN_QUERY)) {
                 LogInHandler.exec(currentCtx, clientQuery);
             } else if (queryType.equals(REGISTRATION_QUERY)) {

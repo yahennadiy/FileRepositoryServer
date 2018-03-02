@@ -5,11 +5,16 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @ interface AnnotationConfigInterface {
+    String keyWord = "repository";
+    String host = "localhost";
     int port = 5555;
+    int ftpPort = 6666;
+    String headUrl = "file://localhost/";
+    String fileUploadDir = "FileUpload/";
     int expiresIn = 86400000;
-    int responseDelay = 25;
     String numberOfRowsToSelect = "20";
     String startOfTransmission = "\001";
+    String endOfText = "\003";
     String endOfTransmission = "\004";
     String haveMore = "+";
     String haveNotMore = "-";
@@ -21,16 +26,19 @@ public @ interface AnnotationConfigInterface {
     String deleteAccountQuery = "04";
     String nextFilesInfoQuery = "05";
     String prevFilesInfoQuery = "06";
-    String tokenIsValid = "10";
-    String tokenIsInvalid = "11";
-    String userOK = "12";
-    String userAlreadyExist = "13";
-    String userNameOrPasswordIsIncorrect = "14";
-    String profileStored = "15";
-    String passwordChanged = "16";
-    String accountDeleted = "17";
-    String dataBaseOperationError = "20";
-    String dataIntegrityError = "21";
-    String transmissionError = "22";
-    String unknownQueryError = "23";
+    String fileInfoUploadQuery = "07";
+    String tokenIsValid = "20";
+    String tokenIsInvalid = "21";
+    String userOK = "22";
+    String userAlreadyExist = "23";
+    String userNameOrPasswordIsIncorrect = "24";
+    String profileStored = "25";
+    String passwordChanged = "26";
+    String accountDeleted = "27";
+    String fileInfoStored = "28";
+    String fileNameAlreadyExist = "29";
+    String dataBaseOperationError = "40";
+    String dataIntegrityError = "41";
+    String transmissionError = "42";
+    String unknownQueryError = "43";
 }

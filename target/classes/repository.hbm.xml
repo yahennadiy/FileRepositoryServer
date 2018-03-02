@@ -22,6 +22,7 @@
         <id name="fileId" type="int" column="FILE_ID">
         </id>
         <property name="fileName" type="string" column="FILE_NAME"/>
+        <property name="fileOwner" type="int" column="OWNER"/>
         <property name="description" type="string" column="DESCRIPTION"/>
         <property name="url" type="string" column="URL"/>
     </class>

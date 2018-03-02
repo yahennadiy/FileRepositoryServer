@@ -10,6 +10,7 @@ public class DataIntegrityErrorHandler implements HandlerInterface {
         String separator = ConfigReader.getSeparator();
         String toClientResponse = stringBuilder.append(ConfigReader.getStartOfTransmission()).append(separator)
                 .append(ConfigReader.getDataIntegrityError()).append(separator)
+                .append(ConfigReader.getEndOfText())
                 .append(ConfigReader.getEndOfTransmission()).toString();
         currentCtx.writeAndFlush(toClientResponse);
     }
