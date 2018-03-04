@@ -2,11 +2,11 @@
       JSON Web Token, Hashing and Salting password.
 
   The application has a file repository. Users can receive a list of files, their description and
-      download the selected file.
-  The test files are located in the /FileRepositoryServer/files directory.
+      download the selected file. The user can upload his files to the repository.
+
+  The test files are located in the /FileRepositoryServer/files directory of server's computer.
+  Uploaded files will be placed to the /FileRepositoryServer/files directory too.
   Downloaded files will be placed to the /FileTarget directory from the root of client`s computer.
-  Uploaded files will be placed to the /FileUpload directory from the root of servers`s computer
-      (can be changed in config/AnnotationConfigInterface.java).
 
   It is necessary:
 - change hibernate.cfg.xml for your database.
@@ -16,5 +16,3 @@
       USERS and FILES in the /setupfiles directory).
 - connect the netty library to the project (I used netty-4.1.19.Final).
   You can download it here: https://netty.io/downloads.html.
-
-  The project is already working, but it still requires improvements.

@@ -22,25 +22,25 @@ public class FtpServerImplementor {
         factory.setPort(ConfigReader.getFtpPort());
         serverFactory.addListener("default", factory.createListener());
         PropertiesUserManagerFactory userManagerFactory = new PropertiesUserManagerFactory();
-        BaseUser user = new BaseUser();
+        BaseUser baseUser = new BaseUser();
         String keyWord = ConfigReader.getKeyWord();
-        user.setName(keyWord);
-        user.setPassword(keyWord);
-        fileUploadDir = RootPathCreator.getRootDirPath().concat(ConfigReader.getFileUploadDir());
+        baseUser.setName(keyWord);
+        baseUser.setPassword(keyWord);
+        fileUploadDir = System.getProperty("user.dir").concat("/").concat(ConfigReader.getFileUploadDir());
         File fileUploadDirFile = new File(fileUploadDir);
         if (!fileUploadDirFile.exists()) {
             fileUploadDirFile.mkdir();
         }
-        System.out.println(fileUploadDir);
-        user.setHomeDirectory(fileUploadDir);
+
+        baseUser.setHomeDirectory(fileUploadDir);
         List<Authority> authorities = new ArrayList<Authority>();
         authorities.add(new WritePermission());
-        user.setAuthorities(authorities);
+        baseUser.setAuthorities(authorities);
         UserManager userManager = userManagerFactory.createUserManager();
         try {
-            userManager.save(user);
-        } catch (FtpException ftpExc) {
-            System.out.println("FtpException1 in FtpServerImplementor: " + ftpExc);
+            userManager.save(baseUser);
+        } catch (FtpException exc) {
+            System.out.println("FtpException1 in FtpServerImplementor: " + exc);
         }
 
         serverFactory.setUserManager(userManager);
@@ -49,8 +49,8 @@ public class FtpServerImplementor {
         FtpServer server = serverFactory.createServer();
         try {
             server.start();
-        } catch (FtpException ftpExc) {
-            System.out.println("FtpException2 in FtpServerImplementor: " + ftpExc);
+        } catch (FtpException exc) {
+            System.out.println("FtpException2 in FtpServerImplementor: " + exc);
         }
     }
 

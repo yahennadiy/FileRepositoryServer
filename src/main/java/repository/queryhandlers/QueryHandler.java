@@ -17,6 +17,7 @@ public class QueryHandler {
     private static final String EDIT_PROFILE_QUERY = ConfigReader.getEditProfileQuery();
     private static final String CHANGE_PASSWORD_QUERY = ConfigReader.getChangePasswordQuery();
     private static final String DELETE_ACCOUNT_QUERY = ConfigReader.getDeleteAccountQuery();
+    private static final String DELETE_FILE_INFO_QUERY = ConfigReader.getDeleteFileInfoQuery();
 
     public static void exec(ChannelHandlerContext currentCtx, String[] clientQuery) {
         for (String item : clientQuery) {
@@ -46,6 +47,8 @@ public class QueryHandler {
                 ChangePasswordHandler.exec(currentCtx, clientQuery);
             } else if (queryType.equals(DELETE_ACCOUNT_QUERY)) {
                 DeleteAccountHandler.exec(currentCtx, clientQuery);
+            } else if (queryType.equals(DELETE_FILE_INFO_QUERY)) {
+                DeleteFileInfoHandler.exec(currentCtx, clientQuery);
             } else {
                 UnknownQueryErrorHandler.exec(currentCtx);
             }

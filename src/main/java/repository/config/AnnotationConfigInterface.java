@@ -5,13 +5,12 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @ interface AnnotationConfigInterface {
+    String headUrl = "file://localhost/";
     String keyWord = "repository";
-    String host = "localhost";
     int port = 5555;
     int ftpPort = 6666;
-    String headUrl = "file://localhost/";
-    String fileUploadDir = "FileUpload/";
-    int expiresIn = 86400000;
+    String fileUploadDir = "files/";
+    int expiresIn = 24 * 3600 * 1000;
     String numberOfRowsToSelect = "20";
     String startOfTransmission = "\001";
     String endOfText = "\003";
@@ -27,6 +26,7 @@ public @ interface AnnotationConfigInterface {
     String nextFilesInfoQuery = "05";
     String prevFilesInfoQuery = "06";
     String fileInfoUploadQuery = "07";
+    String deleteFileInfoQuery = "08";
     String tokenIsValid = "20";
     String tokenIsInvalid = "21";
     String userOK = "22";
@@ -37,6 +37,7 @@ public @ interface AnnotationConfigInterface {
     String accountDeleted = "27";
     String fileInfoStored = "28";
     String fileNameAlreadyExist = "29";
+    String fileInfoDeleted = "30";
     String dataBaseOperationError = "40";
     String dataIntegrityError = "41";
     String transmissionError = "42";

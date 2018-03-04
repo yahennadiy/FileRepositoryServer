@@ -16,12 +16,12 @@ public class ConfigReader {
         }
     }
 
-    public static String getKeyWord() {
-        return configParameters.keyWord;
+    public static String getHeadUrl() {
+        return configParameters.headUrl;
     }
 
-    public static String getHost() {
-        return configParameters.host;
+    public static String getKeyWord() {
+        return configParameters.keyWord;
     }
 
     public static int getPort() {
@@ -30,10 +30,6 @@ public class ConfigReader {
 
     public static int getFtpPort() {
         return configParameters.ftpPort;
-    }
-
-    public static String getHeadUrl() {
-        return configParameters.headUrl;
     }
 
     public static String getFileUploadDir() {
@@ -104,6 +100,10 @@ public class ConfigReader {
         return configParameters.fileInfoUploadQuery;
     }
 
+    public static String getDeleteFileInfoQuery() {
+        return configParameters.deleteFileInfoQuery;
+    }
+
     public static String getTokenIsValid() {
         return configParameters.tokenIsValid;
     }
@@ -142,6 +142,10 @@ public class ConfigReader {
 
     public static String getFileNameAlreadyExist() {
         return configParameters.fileNameAlreadyExist;
+    }
+
+    public static String getFileInfoDeleted() {
+        return configParameters.fileInfoDeleted;
     }
 
     public static String getDataBaseOperationError() {

@@ -30,6 +30,7 @@ public class FileInfoUploadHandler implements HandlerInterface {
 
                 String fileUrl = ConfigReader.getHeadUrl().concat(FtpServerImplementor.getFileUploadDir())
                         .concat(fileName);
+                System.out.println(fileUrl);
                 FileSaver.exec(currentCtx, fileName, fileOwner, fileDescription, fileUrl);
                 FilesPersistentClass file = FileSaver.getFile();
                 stringBuilder.append(ConfigReader.getFileInfoStored()).append(separator)
