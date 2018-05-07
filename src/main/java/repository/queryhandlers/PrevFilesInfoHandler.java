@@ -52,7 +52,6 @@ public class PrevFilesInfoHandler implements HandlerInterface {
                         .append(FileStringPicker.get(file))
                         .append(ConfigReader.getEndOfText())
                         .append(ConfigReader.getEndOfTransmission()).toString();
-                System.out.println(toClientResponse);
                 String finalToClientResponse = toClientResponse;
                 currentCtx.writeAndFlush(finalToClientResponse);
             }

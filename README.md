@@ -11,8 +11,7 @@
   It is necessary:
 - change hibernate.cfg.xml for your database.
 - change repository.xbm.xml if you are not using MySQL.
+- specify the path to resources/META-INF/persistence.xml file into CLASSPATH.
 - create "repository" database.
 - create tables USERS and FILES (there are schemes for creating and filling the tables
       USERS and FILES in the /setupfiles directory).
-- connect the netty library to the project (I used netty-4.1.19.Final).
-  You can download it here: https://netty.io/downloads.html.

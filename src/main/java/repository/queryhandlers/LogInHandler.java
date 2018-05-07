@@ -20,8 +20,6 @@ public class LogInHandler implements HandlerInterface {
                 .append(ConfigReader.getLogInQuery()).append(separator);
         if (!userData.isEmpty()) {
             UsersPersistentClass user = (UsersPersistentClass) userData.get(0);
-            System.out.println(user.getUserId() + "," + user.getUserName() + "," + user.getHashPassword() + ","
-                    + user.getFirstName() + "," + user.getLastName());
             if (user.getUserName().equals(userName)
                     && HashPasswordImplementor.verifyPassword(password, user.getHashPassword())) {
                 String newToken = TokenImplementor.getNewToken(user.getAccess(), ConfigReader.getExpiresIn());
