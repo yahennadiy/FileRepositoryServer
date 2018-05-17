@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+import repository.Main;
 import repository.queryhandlers.errorhandlers.DataBaseOperationErrorHandler;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class PrevFilesHqlSelector {
 
             fileData = query.list();
         } catch (HibernateException he) {
-            System.out.println("Hibernate exception in LessFilesHQLSelector class: " + he.getMessage());
+            Main.getLogger().error("Hibernate exception in PrevFilesHqlSelector class:", he);
             DataBaseOperationErrorHandler.exec(currentCtx);
         }
 

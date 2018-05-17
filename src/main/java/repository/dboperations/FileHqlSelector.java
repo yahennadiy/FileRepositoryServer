@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+import repository.Main;
 import repository.queryhandlers.errorhandlers.DataBaseOperationErrorHandler;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class FileHqlSelector {
             query.setParameter("fileName", fileName);
             fileData = query.list();
         } catch (HibernateException he) {
-            System.out.println("Hibernate exception in FileHQLSelector class: " + he.getMessage());
+            Main.getLogger().error("Hibernate exception in FileHQLSelector class:", he);
             DataBaseOperationErrorHandler.exec(currentCtx);
         }
 

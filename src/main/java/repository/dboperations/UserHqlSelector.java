@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+import repository.Main;
 import repository.queryhandlers.errorhandlers.DataBaseOperationErrorHandler;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class UserHqlSelector {
             query.setParameter("USER_NAME", userName);
             userData = query.list();
         } catch (HibernateException he) {
-            System.out.println("Hibernate exception in UserHQLSelector class: " + he.getMessage());
+            Main.getLogger().error("Hibernate exception in UserHqlSelector class:", he);
             DataBaseOperationErrorHandler.exec(currentCtx);
         }
 

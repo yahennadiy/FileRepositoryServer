@@ -47,7 +47,8 @@ class ServerContainer {
                             pipeline.addLast("handler", new ServerHandler());
                         }
                     });
-            System.out.println("Server started, port: " + port);
+//            System.out.println("Server started, port: " + port);
+//            Main.getLogger().info("Server started, port: " + port);
             bootstrap.bind(port).sync().channel().closeFuture().sync();
         } catch (Exception e) {
             e.printStackTrace();

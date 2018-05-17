@@ -6,6 +6,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import repository.Main;
+
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
@@ -16,7 +18,7 @@ public class TokenImplementor {
         try {
             algorithm = Algorithm.HMAC256("VeryTerribleSecret");
         } catch (UnsupportedEncodingException exc) {
-            System.out.println("JWT exception in TokenImplementor class : " + exc.getMessage());
+            Main.getLogger().error("JWT exception in TokenImplementor class :", exc);
             exc.printStackTrace();
         }
     }
@@ -44,14 +46,14 @@ public class TokenImplementor {
         return tokenValid;
     }
 
-    public static void tokenDecoder(String token) {
-        try {
-            DecodedJWT jwt = JWT.decode(token);
-            System.out.println("Issuer: " + jwt.getIssuer());
-            System.out.println("Exp time: " + jwt.getExpiresAt());
-            System.out.println("Audience: " + jwt.getAudience());
-        } catch (JWTDecodeException exception) {
-            System.out.println("Token is Invalid");
-        }
-    }
+//    public static void tokenDecoder(String token) {
+//        try {
+//            DecodedJWT jwt = JWT.decode(token);
+//            System.out.println("Issuer: " + jwt.getIssuer());
+//            System.out.println("Exp time: " + jwt.getExpiresAt());
+//            System.out.println("Audience: " + jwt.getAudience());
+//        } catch (JWTDecodeException exception) {
+//            System.out.println("Token is Invalid");
+//        }
+//    }
 }

@@ -42,7 +42,6 @@ public class FileInfoUploadHandler implements HandlerInterface {
 
         toClientResponse = stringBuilder.append(ConfigReader.getEndOfText())
                 .append(ConfigReader.getEndOfTransmission()).toString();
-        System.out.println(toClientResponse);
         currentCtx.writeAndFlush(toClientResponse);
     }
 }

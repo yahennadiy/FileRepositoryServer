@@ -7,11 +7,11 @@
   The test files are located in the /FileRepositoryServer/files directory of server's computer.
   Uploaded files will be placed to the /FileRepositoryServer/files directory too.
   Downloaded files will be placed to the /FileTarget directory from the root of client`s computer.
+  Log files are in the log_files directory.
 
   It is necessary:
 - change hibernate.cfg.xml for your database.
 - change repository.xbm.xml if you are not using MySQL.
-- specify the path to resources/META-INF/persistence.xml file into CLASSPATH.
 - create "repository" database.
 - create tables USERS and FILES (there are schemes for creating and filling the tables
       USERS and FILES in the /setupfiles directory).

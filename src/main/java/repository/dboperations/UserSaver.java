@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import repository.Main;
 import repository.persistentclasses.UsersPersistentClass;
 import repository.queryhandlers.errorhandlers.DataBaseOperationErrorHandler;
 
@@ -25,7 +26,7 @@ public class UserSaver {
                 session.save(user);
                 tx.commit();
         } catch (HibernateException he) {
-            System.out.println("Hibernate exception in UserSaver class: " + he.getMessage());
+            Main.getLogger().error("Hibernate exception in UserSaver class:", he);
             DataBaseOperationErrorHandler.exec(currentCtx);
         }
     }

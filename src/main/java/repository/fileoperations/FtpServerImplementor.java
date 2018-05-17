@@ -7,6 +7,7 @@ import org.apache.ftpserver.listener.ListenerFactory;
 import org.apache.ftpserver.usermanager.PropertiesUserManagerFactory;
 import org.apache.ftpserver.usermanager.impl.BaseUser;
 import org.apache.ftpserver.usermanager.impl.WritePermission;
+import repository.Main;
 import repository.config.ConfigReader;
 import java.io.File;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class FtpServerImplementor {
         try {
             userManager.save(baseUser);
         } catch (FtpException exc) {
-            System.out.println("FtpException1 in FtpServerImplementor: " + exc);
+            Main.getLogger().error("FtpException1 in FtpServerImplementor:", exc);
         }
 
         serverFactory.setUserManager(userManager);
@@ -50,7 +51,7 @@ public class FtpServerImplementor {
         try {
             server.start();
         } catch (FtpException exc) {
-            System.out.println("FtpException2 in FtpServerImplementor: " + exc);
+            Main.getLogger().error("FtpException2 in FtpServerImplementor:", exc);
         }
     }
 

@@ -10,15 +10,17 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ChannelHandlerContext currentCtx = ctx;
-        System.out.println("Client query: " + msg);
+//        System.out.println("Client query: " + msg);
+        Main.getLogger().info("Client query: " + msg);
         String[] clientQuery = msg.toString().split(ConfigReader.getSeparator());
         QueryHandler.exec(currentCtx, clientQuery);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        System.out.println("exceptionCaught in ServerHandler " + ctx);
-        cause.printStackTrace();
+//        System.out.println("exceptionCaught in ServerHandler " + ctx);
+        Main.getLogger().error("exceptionCaught in ServerHandler " + ctx);
+//        cause.printStackTrace();
         ctx.close();
     }
 }

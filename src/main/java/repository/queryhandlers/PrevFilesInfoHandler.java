@@ -20,7 +20,6 @@ public class PrevFilesInfoHandler implements HandlerInterface {
                     .append(ConfigReader.getTokenIsInvalid()).append(separator)
                     .append(ConfigReader.getEndOfText())
                     .append(ConfigReader.getEndOfTransmission()).toString();
-            System.out.println(toClientResponse);
             currentCtx.writeAndFlush(toClientResponse);
         } else {
             String fromFileName = clientQuery[3];

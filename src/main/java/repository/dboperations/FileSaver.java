@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import repository.Main;
 import repository.persistentclasses.FilesPersistentClass;
 import repository.queryhandlers.errorhandlers.DataBaseOperationErrorHandler;
 
@@ -24,7 +25,7 @@ public class FileSaver {
             session.save(file);
             tx.commit();
         } catch (HibernateException he) {
-            System.out.println("Hibernate exception in FileSaver class: " + he.getMessage());
+            Main.getLogger().error("Hibernate exception in FileSaver class:", he);
             DataBaseOperationErrorHandler.exec(currentCtx);
         }
     }

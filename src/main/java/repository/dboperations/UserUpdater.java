@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import repository.Main;
 import repository.persistentclasses.UsersPersistentClass;
 import repository.queryhandlers.errorhandlers.DataBaseOperationErrorHandler;
 import java.util.List;
@@ -24,7 +25,7 @@ public class UserUpdater {
                 session.update(user);
                 tx.commit();
         } catch (HibernateException he) {
-            System.out.println("Hibernate exception in UserUpdater class: " + he.getMessage());
+            Main.getLogger().error("Hibernate exception in UserUpdater class:", he);
             DataBaseOperationErrorHandler.exec(currentCtx);
         }
     }

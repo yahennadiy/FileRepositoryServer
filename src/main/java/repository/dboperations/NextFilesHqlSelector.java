@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+import repository.Main;
 import repository.queryhandlers.errorhandlers.DataBaseOperationErrorHandler;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class NextFilesHqlSelector {
             query.setMaxResults(Integer.parseInt(numberOfRows));
             fileData = query.list();
         } catch (HibernateException he) {
-            System.out.println("Hibernate exception in MoreFilesHQLSelector class: " + he.getMessage());
+            Main.getLogger().error("Hibernate exception in NextFilesHQLSelector class:", he);
             DataBaseOperationErrorHandler.exec(currentCtx);
         }
 

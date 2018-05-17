@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import repository.Main;
 import repository.persistentclasses.FilesPersistentClass;
 import repository.queryhandlers.errorhandlers.DataBaseOperationErrorHandler;
 
@@ -21,7 +22,7 @@ public class FileRemover {
             session.delete(file);
             tx.commit();
         } catch (HibernateException he) {
-            System.out.println("Hibernate exception in FileRemover class: " + he.getMessage());
+            Main.getLogger().error("Hibernate exception in FileRemover class:", he);
             DataBaseOperationErrorHandler.exec(currentCtx);
         }
     }
